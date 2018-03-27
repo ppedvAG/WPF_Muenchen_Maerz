@@ -1,0 +1,14 @@
+﻿<Application x:Class="DataTemplateSelectorBeispiel.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DataTemplateSelectorBeispiel"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <DataTemplate x:Key="PersonenTemplate">
+            <TextBlock Text="{Binding Name}" />
+        </DataTemplate>
+        <DataTemplate x:Key="AutoTemplate">
+            <CheckBox IsChecked="{Binding Neuwagen}" />
+        </DataTemplate>
+    </Application.Resources>
+</Application>

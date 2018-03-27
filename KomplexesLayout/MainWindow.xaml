@@ -1,0 +1,79 @@
+﻿<Window x:Class="KomplexesLayout.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KomplexesLayout"
+        mc:Ignorable="d"
+        Slider.ValueChanged="sliderAlter_ValueChanged"
+        Title="MainWindow">
+    <DockPanel Background="Aqua" LastChildFill="True"  Slider.ValueChanged="sliderAlter_ValueChanged">
+        <TextBlock Text="Header" Padding="5" TextAlignment="Center" Foreground="White"
+                   Background="Chocolate" DockPanel.Dock="Top" FontSize="20" FontStyle="Italic"/>
+        <TextBlock Text="Footer" Padding="5" TextAlignment="Center" Foreground="White"
+                   Background="Chocolate" DockPanel.Dock="Bottom" />
+        <!--Attached Property-->
+        <StackPanel DockPanel.Dock="Left" Background="Yellow" Orientation="Vertical">
+            <Button Margin="5">Menu 1</Button>
+            <Button Margin="5">Menu 2</Button>
+            <Button Margin="5">Menu 3</Button>
+            <Button Margin="5">Menu 4</Button>
+        </StackPanel>
+        <Grid Background="Beige">
+            <!--Property-Element-Schreibweise-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid  Margin="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="100"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!--Beschriftungen-->
+                <TextBlock Grid.Row="0" VerticalAlignment="Center">Name:</TextBlock>
+                <TextBlock x:Name="tbAlter" Grid.Row="1" VerticalAlignment="Center">Alter:</TextBlock>
+                <TextBlock Grid.Row="2" VerticalAlignment="Center">Familienstand:</TextBlock>
+                <TextBlock Grid.Row="3" VerticalAlignment="Center">Lieblingsfarbe: </TextBlock>
+                <!--Eingabeelemente-->
+                <TextBox x:Name="tbName" Grid.Column="1" VerticalAlignment="Center" />
+                <Slider x:Name="sliderAlter"
+                        Minimum="0" Maximum="120" TickFrequency="0.5" VerticalAlignment="Center" 
+                        Grid.Row="1" Grid.Column="1" IsSnapToTickEnabled="True" />
+                <ComboBox x:Name="cbFamilienstand"  
+                          VerticalAlignment="Center" Grid.Row="2" Grid.Column="1">
+                    <ComboBoxItem>Ledig</ComboBoxItem>
+                    <ComboBoxItem>Verheiratet</ComboBoxItem>
+                    <ComboBoxItem>Geschwieden</ComboBoxItem>
+                    <ComboBoxItem>Verwitwet</ComboBoxItem>
+                    <ComboBoxItem>Glücklich</ComboBoxItem>
+                </ComboBox>
+                <!--Attached Event-->
+                <WrapPanel Grid.Row="3" Grid.Column="1"  RadioButton.Checked="RadioButton_Checked">
+                    <RadioButton>Rot</RadioButton>
+                    <RadioButton>Gelb</RadioButton>
+                    <RadioButton>Grün</RadioButton>
+                    <RadioButton>Blau</RadioButton>
+                    <RadioButton>Schwarz</RadioButton>
+                    <RadioButton>Weiß</RadioButton>
+                    <RadioButton>Grau</RadioButton>
+                </WrapPanel>
+
+            </Grid>
+
+            <Viewbox Grid.Row="1" Margin="10">
+                <Button Click="FormButtonClick" Padding="10"  VerticalAlignment="Center" HorizontalAlignment="Center">
+                    Abschicken
+                </Button>
+            </Viewbox>
+        </Grid>
+    </DockPanel>
+</Window>

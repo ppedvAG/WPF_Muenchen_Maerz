@@ -1,0 +1,38 @@
+﻿<Application x:Class="ControlTemplates_RunderButton.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ControlTemplates_RunderButton"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ControlTemplate TargetType="Button" x:Key="runderButton">
+            <Border 
+                    MouseEnter="Border_MouseEnter"
+                    MouseLeave="Border_MouseLeave"
+                    Padding="{TemplateBinding Padding}" CornerRadius="100"
+                    BorderBrush="Black" Background="{TemplateBinding Background}" BorderThickness="3">
+                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </Border>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="Button" x:Key="runderButtonTrigger">
+            <Border x:Name="buttonBorder"
+                    Padding="{TemplateBinding Padding}" CornerRadius="100"
+                    BorderBrush="Black" Background="{TemplateBinding Background}" BorderThickness="3">
+                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </Border>
+
+            <ControlTemplate.Triggers>
+                <!--Trigger sind nur so mächtig wie Stlyes,
+                d.h. Properties die schon vom Control selber festgesetzt sind,
+                können nicht nachträglich durch Trigger verändert werden-->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <!--Mittels TargetName können wir direkt ein entsprechenend benanntes
+                    XAML-Element verändern-->
+                    <Setter TargetName="buttonBorder" Property="Background" Value="Blue" />
+                    <!--Ohne TargetName greifen wir auf die Properties des Buttons zu-->
+                    <Setter Property="Padding" Value="40" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Application.Resources>
+</Application>

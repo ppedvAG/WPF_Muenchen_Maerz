@@ -1,0 +1,27 @@
+﻿<Window x:Class="DataTemplateSelectorBeispiel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataTemplateSelectorBeispiel"
+        mc:Ignorable="d"
+        x:Name="window1"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <local:MyTemplateSelector x:Key="mySelector" />
+        <x:Array Type="local:Auto" x:Key="AutoArray">
+            <local:Auto Neuwagen="True" />
+            <local:Auto Neuwagen="True" />
+            <local:Auto Neuwagen="False" />
+        </x:Array>
+        <x:Array Type="local:Person" x:Key="PersonenArray">
+            <local:Person Name="Alex" />
+            <local:Person Name="Maria" />
+            <local:Person Name="Anja" />
+        </x:Array>
+    </Window.Resources>
+    <StackPanel>
+        <ListBox Margin="20" ItemTemplateSelector="{StaticResource mySelector}" ItemsSource="{StaticResource PersonenArray}" />
+        <ListBox Margin="20" ItemTemplateSelector="{StaticResource mySelector}" ItemsSource="{StaticResource AutoArray}" />
+    </StackPanel>
+</Window>

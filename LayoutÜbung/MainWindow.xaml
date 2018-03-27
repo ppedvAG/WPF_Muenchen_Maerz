@@ -1,0 +1,30 @@
+﻿<Window x:Class="LayoutÜbung.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LayoutÜbung"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Margin="5">Bitte geben Sie Ihren Text ein: </TextBlock>
+        <TextBox Grid.Row="1" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                 HorizontalScrollBarVisibility="Auto" AcceptsTab="True" />
+        <DockPanel Grid.Row="2" LastChildFill="False" Margin="5">
+            <Button Width="100" DockPanel.Dock="Right">Abbrechen</Button>
+            <Button Width="100" DockPanel.Dock="Right">
+                <Button.Margin>
+                    <!--Margin = new Thickness() { Left=0, Top=0, Right=5, Bottom=0};-->
+                    <Thickness Left="0" Top="0" Right="5" Bottom="0" />
+                </Button.Margin>
+                OK</Button>
+        </DockPanel>
+        
+    </Grid>
+</Window>

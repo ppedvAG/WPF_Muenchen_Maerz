@@ -1,0 +1,21 @@
+﻿<Application x:Class="DataTemplates.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DataTemplates"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <DataTemplate DataType="local:Person" x:Key="datatemplatePerson">
+            <DockPanel>
+                <Image 
+                        DockPanel.Dock="Left"
+                        Height="50" Width="50" Source="{Binding FotoUrl}" />
+                <UniformGrid>
+                    <TextBlock Margin="0 0 5 0">Name:</TextBlock>
+                    <TextBox Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"></TextBox>
+                    <TextBlock Margin="0 0 5 0">Volljährig:</TextBlock>
+                    <CheckBox IsChecked="{Binding Volljährig,Mode=OneWay}"></CheckBox>
+                </UniformGrid>
+            </DockPanel>
+        </DataTemplate>
+    </Application.Resources>
+</Application>

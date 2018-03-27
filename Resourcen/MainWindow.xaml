@@ -1,0 +1,42 @@
+﻿<Window x:Class="Resourcen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Resourcen"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="525">
+    <Window.Resources>
+        <SolidColorBrush x:Key="buttonBackground" Color="Yellow" />
+    </Window.Resources>
+
+    <StackPanel>
+        <Menu MenuItem.Click="MenuItem_Click">
+            <MenuItem Header="Schriftgröße">
+                <MenuItem Header="Zwanzig" Tag="20" />
+                <MenuItem Header="Dreißig" Tag="30" />
+                <MenuItem Header="Vierzig" Tag="40" />
+            </MenuItem>
+        </Menu>
+        
+        <Button Height="{Binding RelativeSource={RelativeSource Self},Path=(DockPanel.Dock)}"  Background="{StaticResource buttonBackground}" FontSize="{StaticResource windowFontSize}">OK</Button>
+        <Button Background="{StaticResource buttonBackground}" FontSize="{StaticResource windowFontSize}" Content="{StaticResource cancelButton}"></Button>
+        <Button Background="{StaticResource buttonBackground}" FontSize="{DynamicResource windowFontSize}">Neu</Button>
+        <Button Background="{StaticResource buttonBackground}" FontSize="{DynamicResource windowFontSize}">Beenden</Button>
+
+        <StackPanel>
+            <StackPanel.Resources>
+                <system:Double x:Key="windowFontSize">20</system:Double>
+                <SolidColorBrush x:Key="buttonBackground" Color="Red" />
+            </StackPanel.Resources>
+            <Button Background="{StaticResource buttonBackground}" Click="Button_Click" FontSize="{StaticResource windowFontSize}">OK</Button>
+            <Button Background="{StaticResource buttonBackground}" FontSize="{StaticResource windowFontSize}">
+                <!--In disem Fall steht das XAML-Element NICHT für ein Objekt der Klasse StaticResource!-->
+                <StaticResource ResourceKey="cancelButton" />
+            </Button>
+            <Button Background="{StaticResource buttonBackground}" FontSize="{StaticResource windowFontSize}">Neu</Button>
+            <Button Background="{StaticResource buttonBackground}" FontSize="{StaticResource windowFontSize}">Beenden</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

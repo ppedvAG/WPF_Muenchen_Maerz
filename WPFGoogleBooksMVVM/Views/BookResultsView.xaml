@@ -1,0 +1,67 @@
+﻿<Window x:Class="WPFGoogleBooksMVVM.Views.BookResultsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFGoogleBooksMVVM.Views"
+        xmlns:wpfgooglebooksmvvm="clr-namespace:WPFGoogleBooksMVVM"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        x:Name="window1"
+        Title="BookResultsView">
+    <d:Window.DataContext>
+        <wpfgooglebooksmvvm:BookResultsViewModel />
+    </d:Window.DataContext>
+    <Grid>
+        <DataGrid  ItemsSource="{Binding BuchListe}" AutoGenerateColumns="False" CanUserAddRows="False">
+            <!--Expression.Interactivity als Nuget-Package installieren-->
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding OpenWebsite}" CommandParameter="{Binding ElementName=grid,Path=SelectedItem}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Cover">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="{x:Type wpfgooglebooksmvvm:Book}">
+                            <Image Height="50" Width="50" Source="{Binding VolumeInfo.ImageLinks.Thumbnail}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Titel" Binding="{Binding VolumeInfo.Title}" />
+
+                <DataGridTemplateColumn Header="Link">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <Hyperlink Click="Hyperlink_Click" NavigateUri="{Binding VolumeInfo.PreviewLink}">
+                                    Link
+                                </Hyperlink>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Autoren">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ItemsControl ItemsSource="{Binding VolumeInfo._authors}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Favorit">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <!--Achtung: Der DataContext innerhalb des DataTemplates ist NICHT das ViewModel sondern ein Buch-Objekt
+                            Daher muss beim Zugriff auf Commands explicit an den DataContext des Windows gebunden werden!!-->
+                            <CheckBox IsChecked="{Binding Favorit}" 
+                                      Command="{Binding ElementName=window1,Path=DataContext.ChangeFavoritState}" 
+                                      CommandParameter="{Binding}">
+                            </CheckBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

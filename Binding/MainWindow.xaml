@@ -1,0 +1,27 @@
+﻿<Window x:Class="Binding.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Binding"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <UniformGrid Columns="2">
+        <!--Binding Source-->
+        <TextBlock>Binding Source: </TextBlock>
+        <Slider x:Name="slider1" Minimum="0" Maximum="100" Value="50" />
+        
+        <!--Binding Targets-->
+        <TextBlock>Binding Target, OneWay: </TextBlock>
+        <TextBox Text="{Binding ElementName=slider1,Path=Value,Mode=OneWay}" />
+        <TextBlock>Binding Target, TwoWay, LostFocus:</TextBlock>
+        <TextBox Text="{Binding ElementName=slider1,Path=Value,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" />
+        <TextBlock>Binding Target, TwoWay, PropertyChanged:</TextBlock>
+        <TextBox Text="{Binding ElementName=slider1,Path=Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock>Binding Target, OneTime:</TextBlock>
+        <TextBox Text="{Binding ElementName=slider1,Path=Value,Mode=OneTime}" />
+        <TextBlock>Binding Target, TwoWay, Explicit:</TextBlock>
+        <TextBox x:Name="explicitTextbox" Text="{Binding ElementName=slider1,Path=Value,Mode=TwoWay,UpdateSourceTrigger=Explicit}" />
+        <Button Click="Button_Click">Quelle aktualisieren</Button>
+    </UniformGrid>
+</Window>

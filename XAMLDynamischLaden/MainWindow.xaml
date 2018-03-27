@@ -1,0 +1,20 @@
+﻿<Window x:Class="XAMLDynamischLaden.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:XAMLDynamischLaden"
+        mc:Ignorable="d"
+        Title="{DynamicResource windowTitle}" Height="350" Width="525">
+    <StackPanel VerticalAlignment="Center">
+        <Button Click="Button_Click">XAML Datei laden</Button>
+        <ContentPresenter x:Name="contentPresenter" />
+        <local:CustomPanel Margin="20">
+            <Button local:CustomPanel.ZOrder="4">Hallo</Button>
+            <Button Height="50" local:CustomPanel.ZOrder="2">Hallo2</Button>
+            <TextBlock Background="Red">Ein TextBlock!</TextBlock>
+        </local:CustomPanel>
+        <!--<Image x:Name="image1" Source="Bilder/Fisch.jpg" Height="50" />-->
+        <Image x:Name="image1" Height="50" />
+    </StackPanel>
+</Window>

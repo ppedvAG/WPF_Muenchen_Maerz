@@ -1,0 +1,24 @@
+﻿<Window x:Class="SimpleColorPicker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimpleColorPicker"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Background="{Binding ElementName=slider1,Path=Value,Mode=OneWay,Converter={StaticResource doubleToBrush}}"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <system:Double x:Key="sliderColor">40</system:Double>
+    </Window.Resources>
+    <Grid Margin="10">
+        <!--Binding Source-->
+        <Grid Background="White"  VerticalAlignment="Center" >
+            <Slider
+                Margin="10"
+                Background="{Binding RelativeSource={RelativeSource Mode=Self},Path=Value,Converter={StaticResource doubleToBrush}}"
+                x:Name="slider1" Minimum="0" Maximum="16581374" TickFrequency="1" IsSnapToTickEnabled="True" />
+        </Grid>
+        
+    </Grid>
+</Window>
